@@ -1,13 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const postController = require("./controllers/postController");
+require("dotenv").config();
 
 const app = express();
 
 // Connect to MongoDB Database
-mongoose.connect(
-  "mongodb+srv://fatihozoglu:5Pa7UHzAW2XNk4H@database.nzgt2.mongodb.net/blogProject?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DB_CONNECTION);
 
 // Setting ejs as a view engine
 app.set("view engine", "ejs");
