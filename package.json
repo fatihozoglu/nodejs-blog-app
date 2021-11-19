@@ -4,7 +4,7 @@
   "description": "This is a Blog App built with Node.js/Express Framework, MongoDB and Mongoose. You can add, update and delete posts, display all posts in the Home Page and read posts in their individual pages.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Fatih Özoğlu",
   "license": "MIT",
