@@ -1,4 +1,10 @@
 ### Node ###
+
+MacOS File System
+.DS_Store
+
+/public
+
 # Logs
 logs
 *.log
