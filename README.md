@@ -2,6 +2,8 @@
 
 This is a Nodejs Blog Project built as part of [Patika.dev Backend with Nodejs Path](https://app.patika.dev/egitimler/nodejs-ile-backend-patikasi).
 
+You can check the [live app here](https://fozoglu-nodejs-blog-app.herokuapp.com/).
+
 ## Table of contents
 
 - [Overview](#overview)
@@ -30,7 +32,7 @@ User should be able to:
 
 ### Links
 
-- Solution URL: [Github Link](https://github.com/fatihozoglu/nodejs-blog-app)
+- Live App: [Fatih's Blog App](https://fozoglu-nodejs-blog-app.herokuapp.com/)
 
 ## My process
 
@@ -43,9 +45,11 @@ User should be able to:
 - [Nodejs](https://nodejs.org/en/)
 - [Expressjs Web Framework](https://expressjs.com/)
 - [Mongodb](https://www.mongodb.com/)
+- [Mongodb Atlas](https://www.mongodb.com/atlas/database)
 - [Mongoosejs ODM](https://mongoosejs.com/)
 - [EJS Template Engine](https://ejs.co/)
 - [Nodemon](https://www.npmjs.com/package/nodemon)-Development Dependency
+- [Heroku](https://www.heroku.com/)-Deployment
 
 ## Author
 
