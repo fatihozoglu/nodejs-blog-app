@@ -41,7 +41,6 @@ exports.deletePost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find();
-    console.log(posts);
     res.render("index", {
       posts,
     });
