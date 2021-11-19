@@ -34,6 +34,8 @@ app.get("/posts/:id", postController.getPostPage);
 // Edit Page
 app.get("/posts/edit/:id", postController.getEditPage);
 
-app.listen(8080, () => {
-  console.log("Sunucu 8080 Portunda başlatıldı.");
+let PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`Sunucu ${PORT} Portunda başlatıldı.`);
 });
