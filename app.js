@@ -5,7 +5,9 @@ const postController = require("./controllers/postController");
 const app = express();
 
 // Connect to MongoDB Database
-mongoose.connect("mongodb://127.0.0.1:27017/clean-blog-db");
+mongoose.connect(
+  "mongodb+srv://fatihozoglu:5Pa7UHzAW2XNk4H@database.nzgt2.mongodb.net/blogProject?retryWrites=true&w=majority"
+);
 
 // Setting ejs as a view engine
 app.set("view engine", "ejs");
