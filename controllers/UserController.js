@@ -36,7 +36,6 @@ exports.register = async (req, res) => {
         expiresIn: "2h",
       });
 
-      // return new user
       res.status(201).cookie("x-access-token", token, {
         expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hours
         httpOnly: true,
@@ -62,23 +61,17 @@ exports.login = async (req, res) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
-      const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
-      );
+      const token = jwt.sign({ user_id: user._id }, process.env.TOKEN_KEY, {
+        expiresIn: "2h",
+      });
 
-      // save user token
-      user.token = token;
-
-      // user
-      res.status(200).json(user);
+      res.status(201).cookie("x-access-token", token, {
+        expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hours
+        httpOnly: true,
+      });
     }
     res.status(400).send("Invalid Credentials");
   } catch (err) {
     console.log(err);
   }
-  // Our register logic ends here
 };
