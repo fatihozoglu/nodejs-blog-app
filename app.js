@@ -1,7 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const postController = require("./controllers/postController");
+const userController = require("./controllers/userController");
 require("dotenv").config();
+const authn = require("./middleware/auth");
 
 const app = express();
 
@@ -18,11 +20,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Create Post
-app.post("/add_post", postController.createPost);
+app.post("/add_post", authn, postController.createPost);
 // Edit Post
-app.post("/edit_post/:id", postController.editPost);
+app.post("/edit_post/:id", authn, postController.editPost);
 // Delete Post
-app.get("/delete_post/:id", postController.deletePost);
+app.get("/delete_post/:id", authn, postController.deletePost);
+
+// Register User
+app.post("/register", userController.register);
+// Login
+app.post("/login", userController.login);
 
 // Home Page
 app.get("/", postController.getAllPosts);
@@ -34,6 +41,10 @@ app.get("/add_post", postController.getAddPostPage);
 app.get("/posts/:id", postController.getPostPage);
 // Edit Page
 app.get("/posts/edit/:id", postController.getEditPage);
+// Register Page
+app.get("/register", userController.getRegisterPage);
+// Login Page
+app.get("/login", userController.getLoginPage);
 
 let PORT = process.env.PORT || 8080;
 
