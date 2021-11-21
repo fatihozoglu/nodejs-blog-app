@@ -15,13 +15,13 @@ exports.register = async (req, res) => {
     const { first_name, last_name, email, password } = req.body;
 
     if (!(first_name && last_name && email && password)) {
-      res.status(400).send("All fields are required.");
+      res.status(400).redirect("/register");
     }
 
     const oldUser = await User.findOne({ email: email });
 
     if (oldUser) {
-      res.status(409).send("User with this email adress already exists");
+      res.status(409).redirect("/login");
     } else {
       const encryptedPassword = await bcrypt.hash(password, 10);
 
@@ -36,10 +36,13 @@ exports.register = async (req, res) => {
         expiresIn: "2h",
       });
 
-      res.status(201).cookie("x-access-token", token, {
-        expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hours
-        httpOnly: true,
-      });
+      res
+        .status(201)
+        .cookie("x-access-token", token, {
+          expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hours
+          httpOnly: true,
+        })
+        .redirect("/");
     }
   } catch (err) {
     console.log(err);
@@ -54,7 +57,7 @@ exports.login = async (req, res) => {
 
     // Validate user input
     if (!(email && password)) {
-      res.status(400).send("All input is required");
+      res.status(400).redirect("/login");
     }
     // Validate if user exist in our database
     const user = await User.findOne({ email });
@@ -65,12 +68,16 @@ exports.login = async (req, res) => {
         expiresIn: "2h",
       });
 
-      res.status(201).cookie("x-access-token", token, {
-        expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hours
-        httpOnly: true,
-      });
+      res
+        .status(201)
+        .cookie("x-access-token", token, {
+          expires: new Date(Date.now() + 3600000), // cookie will be removed after 1 hours
+          httpOnly: true,
+        })
+        .redirect("/");
+    } else {
+      res.status(400).redirect("/login");
     }
-    res.status(400).send("Invalid Credentials");
   } catch (err) {
     console.log(err);
   }
